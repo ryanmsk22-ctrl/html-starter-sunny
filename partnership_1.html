@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Partnership — Sunny Brand Partners</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:#F5F0E8;color:#0B1F3A;overflow-x:hidden;cursor:none}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+:root{--cream:#F5F0E8;--cream2:#EDE8DE;--navy:#0B1F3A;--navy2:#071525;--gold:#F6B73C;--sub:#4A6278;--rule:rgba(11,31,58,.1)}
+
+/* CURSOR */
+#dot{position:fixed;width:7px;height:7px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+#ring{position:fixed;width:32px;height:32px;border:1.5px solid rgba(246,183,60,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .22s,height .22s,border-color .22s}
+body:has(a:hover) #dot{width:14px;height:14px}
+body:has(a:hover) #ring{width:50px;height:50px;border-color:var(--gold)}
+
+/* NAV */
+#nav{position:fixed;inset:0 0 auto;z-index:500;height:68px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(245,240,232,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule)}
+.nlogo{display:flex;align-items:center;gap:10px}
+.nlogo svg{width:24px;height:24px;flex-shrink:0}
+.nlogo-t{font-size:13px;font-weight:700;letter-spacing:.02em}
+.nlogo-s{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(11,31,58,.38);display:block;margin-top:1px}
+.nlinks{display:flex;align-items:center;gap:26px}
+.nlink{font-size:12px;color:rgba(11,31,58,.5);letter-spacing:.03em;transition:color .2s}
+.nlink:hover,.nlink.active{color:var(--navy);font-weight:600}
+.ncta{background:var(--navy);color:#fff;padding:9px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s}
+.ncta:hover{background:#1a3558;transform:translateY(-1px)}
+
+/* HERO */
+#phero{background:var(--navy2);padding:160px 52px 120px;position:relative;overflow:hidden}
+#phero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 80% at 90% 50%,rgba(246,183,60,.06),transparent);pointer-events:none}
+.phero-stripe{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.5}
+.phero-in{position:relative;z-index:2;max-width:760px}
+.phero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:24px;opacity:0;animation:up .7s .1s ease forwards}
+.phero-eyebrow::before{content:'';width:22px;height:1px;background:currentColor}
+.phero-h{font-size:clamp(52px,7vw,96px);font-weight:700;letter-spacing:-.038em;line-height:.93;color:#fff;margin-bottom:28px;opacity:0;animation:up 1s .25s cubic-bezier(.22,1,.36,1) forwards}
+.phero-h em{font-family:'Lora',serif;font-style:italic;font-weight:600;color:var(--gold)}
+.phero-sub{font-size:17px;line-height:1.72;color:rgba(255,255,255,.55);max-width:520px;opacity:0;animation:up .8s .45s cubic-bezier(.22,1,.36,1) forwards}
+
+/* OVERVIEW STRIP */
+#poverview{background:#fff;border-bottom:1px solid var(--rule)}
+.pov-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.pov-cell{padding:36px 32px;border-right:1px solid var(--rule);cursor:none;transition:background .25s}
+.pov-cell:last-child{border-right:none}
+.pov-cell:hover{background:#F7F9FC}
+.pov-num{font-size:11px;font-weight:700;letter-spacing:.18em;color:rgba(11,31,58,.2);margin-bottom:10px;display:block}
+.pov-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.pov-desc{font-size:12px;color:var(--sub);line-height:1.5}
+.pov-arrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-top:12px;transition:gap .2s}
+.pov-cell:hover .pov-arrow{gap:10px}
+
+/* PARTNERSHIP CARDS */
+#pcards{background:var(--cream);padding:120px 52px}
+
+.pcard{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  background:#fff;
+  border:1px solid var(--rule);
+  margin-bottom:24px;
+  overflow:hidden;
+  transition:box-shadow .4s,transform .35s;
+}
+.pcard:hover{box-shadow:0 20px 64px rgba(11,31,58,.09);transform:translateY(-3px)}
+
+/* Coloured left accent panel */
+.pcard-accent{
+  background:var(--navy2);
+  padding:56px 48px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  position:relative;overflow:hidden;
+}
+.pcard-accent::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border:1px solid rgba(246,183,60,.08);border-radius:50%}
+.pcard-accent::after{content:'';position:absolute;top:-10px;right:-10px;width:120px;height:120px;border:1px solid rgba(246,183,60,.06);border-radius:50%}
+.pcard-num{font-size:clamp(72px,8vw,110px);font-weight:700;letter-spacing:-.06em;line-height:1;color:rgba(246,183,60,.1);position:absolute;bottom:32px;right:32px;font-variant-numeric:tabular-nums}
+.pcard-icon{width:52px;height:52px;border:1px solid rgba(246,183,60,.2);background:rgba(246,183,60,.07);display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.pcard-tag{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:rgba(246,183,60,.6);margin-bottom:12px;display:block}
+.pcard-h{font-size:clamp(22px,2.4vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#fff;margin-bottom:0;position:relative;z-index:2}
+
+/* Right content panel */
+.pcard-body{padding:56px 52px}
+.pcard-lead{font-size:16px;line-height:1.75;color:var(--sub);margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--rule)}
+.pcard-lead strong{color:var(--navy);font-weight:600}
+.pcard-includes{margin-bottom:36px}
+.pcard-includes-label{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(11,31,58,.3);margin-bottom:16px;display:block}
+.pcard-list{list-style:none}
+.pcard-list li{font-size:14px;line-height:1.6;color:var(--sub);padding:10px 0;border-bottom:1px solid var(--rule);display:flex;align-items:flex-start;gap:12px}
+.pcard-list li:last-child{border-bottom:none}
+.pcard-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+.pcard-cta{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;padding:13px 26px;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;transition:background .2s,transform .2s,box-shadow .25s;position:relative;overflow:hidden}
+.pcard-cta::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);transform:translateX(-110%) skewX(-12deg);transition:transform .4s}
+.pcard-cta:hover::after{transform:translateX(110%) skewX(-12deg)}
+.pcard-cta:hover{background:#1a3558;transform:translateY(-2px);box-shadow:0 10px 28px rgba(11,31,58,.22)}
+.pcard-cta svg{transition:transform .3s}
+.pcard-cta:hover svg{transform:translateX(4px)}
+
+/* CTA SECTION */
+#pcta{background:var(--navy);padding:140px 52px;text-align:center;position:relative;overflow:hidden}
+#pcta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse,rgba(246,183,60,.07),transparent 60%);pointer-events:none}
+.pcta-stripe{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.5}
+.pcta-in{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.pcta-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(246,183,60,.22);padding:7px 18px;margin-bottom:36px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:rgba(246,183,60,.07)}
+.pulse{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.pcta-h{font-size:clamp(40px,6vw,80px);font-weight:700;letter-spacing:-.038em;line-height:.95;color:#fff;margin-bottom:22px}
+.pcta-h em{font-family:'Lora',serif;font-style:italic;font-weight:600;color:var(--gold)}
+.pcta-sub{font-size:16px;line-height:1.72;color:rgba(255,255,255,.55);max-width:400px;margin:0 auto 48px}
+.pcta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-gd{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--navy);padding:14px 28px;font-size:13px;font-weight:700;letter-spacing:.05em;transition:transform .2s,box-shadow .25s;position:relative;overflow:hidden}
+.btn-gd::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.2);transform:translateX(-110%) skewX(-12deg);transition:transform .4s}
+.btn-gd:hover::after{transform:translateX(110%) skewX(-12deg)}
+.btn-gd:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(246,183,60,.38)}
+.btn-gd svg{transition:transform .3s}
+.btn-gd:hover svg{transform:translateX(4px)}
+.btn-gh{display:inline-flex;align-items:center;gap:9px;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.75);padding:14px 28px;font-size:13px;font-weight:500;transition:border-color .2s,color .2s}
+.btn-gh:hover{border-color:rgba(255,255,255,.6);color:#fff}
+
+/* FOOTER */
+footer{background:#040c16;padding:56px 52px 32px;border-top:1px solid rgba(255,255,255,.05)}
+.frule{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(246,183,60,.28),transparent);margin-bottom:40px}
+.fbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fcopy{font-size:11px;color:rgba(255,255,255,.24)}
+.fback{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.4);transition:color .2s}
+.fback:hover{color:var(--gold)}
+
+/* REVEALS */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}.d4{transition-delay:.35s}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+@media(max-width:1100px){
+  #nav,#phero,#pcards,#pcta,footer{padding-left:24px;padding-right:24px}
+  #phero{padding-top:120px;padding-bottom:80px}
+  .pov-grid{grid-template-columns:1fr 1fr}
+  .pov-cell:nth-child(2){border-right:none}
+  .pcard{grid-template-columns:1fr}
+  .pcard-accent{padding:44px 36px 80px}
+  .pcard-body{padding:44px 36px}
+}
+@media(max-width:640px){
+  body{cursor:auto}#dot,#ring{display:none}
+  #nav{padding:0 16px}
+  .nlinks .nlink{display:none}
+  #phero,#pcards,#pcta,footer{padding-left:16px;padding-right:16px}
+  #phero{padding-top:100px;padding-bottom:64px}
+  .pov-grid{grid-template-columns:1fr 1fr}
+  #pcta{padding-top:100px;padding-bottom:100px}
+  .pcta-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+<div id="dot"></div><div id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="sunny-brand-partners.html" class="nlogo">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="4" fill="#F6B73C" opacity=".92"/>
+      <line x1="12" y1="1" x2="12" y2="5" stroke="#F6B73C" stroke-width="1.3" stroke-linecap="round" opacity=".72"/>
+      <line x1="12" y1="19" x2="12" y2="23" stroke="#F6B73C" stroke-width="1.3" stroke-linecap="round" opacity=".72"/>
+      <line x1="1" y1="12" x2="5" y2="12" stroke="#F6B73C" stroke-width="1.3" stroke-linecap="round" opacity=".72"/>
+      <line x1="19" y1="12" x2="23" y2="12" stroke="#F6B73C" stroke-width="1.3" stroke-linecap="round" opacity=".72"/>
+      <line x1="3.5" y1="3.5" x2="6.4" y2="6.4" stroke="#F6B73C" stroke-width="1.1" stroke-linecap="round" opacity=".36"/>
+      <line x1="17.6" y1="17.6" x2="20.5" y2="20.5" stroke="#F6B73C" stroke-width="1.1" stroke-linecap="round" opacity=".36"/>
+      <line x1="20.5" y1="3.5" x2="17.6" y2="6.4" stroke="#F6B73C" stroke-width="1.1" stroke-linecap="round" opacity=".36"/>
+      <line x1="6.4" y1="17.6" x2="3.5" y2="20.5" stroke="#F6B73C" stroke-width="1.1" stroke-linecap="round" opacity=".36"/>
+    </svg>
+    <div><div class="nlogo-t">Sunny Brand Partners</div><span class="nlogo-s">Marketplace Growth</span></div>
+  </a>
+  <div class="nlinks">
+    <a href="sunny-brand-partners.html" class="nlink">Home</a>
+    <a href="sunny-brand-partners.html#cases" class="nlink">Results</a>
+    <a href="#" class="nlink active">Our Partnership</a>
+    <a href="mailto:hello@sunnybrandpartners.com" class="nlink">Contact Us</a>
+    <a href="mailto:hello@sunnybrandpartners.com" class="ncta">Partner With Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="phero">
+  <div class="phero-stripe"></div>
+  <div class="phero-in">
+    <div class="phero-eyebrow">Our Partnership</div>
+    <h1 class="phero-h">How we work<br>with <em>your brand.</em></h1>
+    <p class="phero-sub">We don&#39;t do one-size-fits-all. Every engagement is structured around what creates the most value for where you are right now &#8212; with our capital and expertise behind every step.</p>
+  </div>
+</section>
+
+<!-- OVERVIEW STRIP -->
+<div id="poverview">
+  <div class="pov-grid">
+    <a href="#strategic" class="pov-cell rv d1">
+      <span class="pov-num">01</span>
+      <div class="pov-name">Strategic Marketplace Partner</div>
+      <div class="pov-desc">Full strategy &amp; execution across all channels</div>
+      <span class="pov-arrow">View <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a href="#distributor" class="pov-cell rv d2">
+      <span class="pov-num">02</span>
+      <div class="pov-name">Authorized Retail Distributor</div>
+      <div class="pov-desc">We buy your inventory &amp; protect your brand</div>
+      <span class="pov-arrow">View <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a href="#inventory" class="pov-cell rv d3">
+      <span class="pov-num">03</span>
+      <div class="pov-name">Inventory &amp; Wholesale Partner</div>
+      <div class="pov-desc">Guaranteed POs with our capital</div>
+      <span class="pov-arrow">View <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a href="#operator" class="pov-cell rv d4">
+      <span class="pov-num">04</span>
+      <div class="pov-name">Growth Operator</div>
+      <div class="pov-desc">Embedded operator, full marketplace ownership</div>
+      <span class="pov-arrow">View <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+</div>
+
+<!-- PARTNERSHIP CARDS -->
+<section id="pcards">
+
+  <!-- 01 Strategic -->
+  <div class="pcard rv" id="strategic">
+    <div class="pcard-accent">
+      <div>
+        <div class="pcard-icon">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M14 3L25 8.5V19.5L14 25L3 19.5V8.5L14 3Z" stroke="#F6B73C" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3v22M3 8.5l11 5.5 11-5.5" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="pcard-tag">Model 01</span>
+        <h2 class="pcard-h">Strategic Marketplace Partner</h2>
+      </div>
+      <div class="pcard-num">01</div>
+    </div>
+    <div class="pcard-body">
+      <p class="pcard-lead">We embed ourselves in your business as a <strong>true growth partner</strong> &#8212; developing and executing your full marketplace strategy across Amazon, Walmart, TikTok Shop, and beyond with the depth and commitment of an internal team. You get senior operators, not account coordinators.</p>
+      <div class="pcard-includes">
+        <span class="pcard-includes-label">What&#39;s included</span>
+        <ul class="pcard-list">
+          <li>Full marketplace strategy &amp; execution across all channels</li>
+          <li>Category positioning &amp; competitive landscape analysis</li>
+          <li>Advertising management &#8212; Sponsored Products, Brands &amp; DSP</li>
+          <li>Listing optimisation, A+ content &amp; storefront builds</li>
+          <li>Monthly performance reporting with founders-level access</li>
+          <li>Dedicated senior operator on your account from day one</li>
+        </ul>
+      </div>
+      <a href="mailto:hello@sunnybrandpartners.com" class="pcard-cta">Start a Conversation <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 02 Distributor -->
+  <div class="pcard rv d1" id="distributor">
+    <div class="pcard-accent">
+      <div>
+        <div class="pcard-icon">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><rect x="3" y="6" width="22" height="16" rx="2" stroke="#F6B73C" stroke-width="1.5"/><path d="M3 11h22M9 6V4M19 6V4" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round"/><path d="M8 16h4M16 16h4" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="pcard-tag">Model 02</span>
+        <h2 class="pcard-h">Authorized Retail Distributor</h2>
+      </div>
+      <div class="pcard-num">02</div>
+    </div>
+    <div class="pcard-body">
+      <p class="pcard-lead">We become your <strong>authorized distributor</strong> &#8212; purchasing inventory directly and managing the full retail relationship on your behalf. This protects your brand equity, eliminates grey-market risk, and gives you a high-performance sales channel with zero operational overhead.</p>
+      <div class="pcard-includes">
+        <span class="pcard-includes-label">What&#39;s included</span>
+        <ul class="pcard-list">
+          <li>Direct inventory purchase &#8212; we carry the capital risk</li>
+          <li>Authorized seller status that protects your brand integrity</li>
+          <li>Proactive unauthorized seller removal &amp; MAP enforcement</li>
+          <li>Full logistics, FBA prep &amp; inbound fulfilment management</li>
+          <li>Amazon Brand Registry management &amp; brand health monitoring</li>
+          <li>Transparent reporting on all sales, inventory &amp; returns</li>
+        </ul>
+      </div>
+      <a href="mailto:hello@sunnybrandpartners.com" class="pcard-cta">Start a Conversation <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 03 Inventory -->
+  <div class="pcard rv d2" id="inventory">
+    <div class="pcard-accent">
+      <div>
+        <div class="pcard-icon">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><path d="M4 20L10 14L14 18L20 10L24 14" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 6h20M4 24h20" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg>
+        </div>
+        <span class="pcard-tag">Model 03</span>
+        <h2 class="pcard-h">Inventory &amp; Wholesale Partner</h2>
+      </div>
+      <div class="pcard-num">03</div>
+    </div>
+    <div class="pcard-body">
+      <p class="pcard-lead">We purchase your inventory at <strong>wholesale, deploying our own capital</strong> so you don&#39;t have to wait for sales to fund growth. This model is ideal for brands that want guaranteed volume, a reliable purchase order partner, and zero marketplace fulfilment headaches.</p>
+      <div class="pcard-includes">
+        <span class="pcard-includes-label">What&#39;s included</span>
+        <ul class="pcard-list">
+          <li>Guaranteed purchase orders &#8212; our capital, your growth</li>
+          <li>Wholesale pricing agreements &amp; volume commitments</li>
+          <li>FBA prep, labelling, bundling &amp; inbound logistics</li>
+          <li>Inventory forecasting, demand planning &amp; reorder management</li>
+          <li>Zero stockout guarantee on all managed SKUs</li>
+          <li>Full sales velocity reporting by ASIN &amp; marketplace</li>
+        </ul>
+      </div>
+      <a href="mailto:hello@sunnybrandpartners.com" class="pcard-cta">Start a Conversation <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- 04 Growth Operator -->
+  <div class="pcard rv d3" id="operator">
+    <div class="pcard-accent">
+      <div>
+        <div class="pcard-icon">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#F6B73C" stroke-width="1.5"/><path d="M14 8v6l4 2" stroke="#F6B73C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="pcard-tag">Model 04</span>
+        <h2 class="pcard-h">Growth Operator</h2>
+      </div>
+      <div class="pcard-num">04</div>
+    </div>
+    <div class="pcard-body">
+      <p class="pcard-lead">We step in as your <strong>embedded growth operator</strong>, taking full ownership of marketplace performance. From listing architecture to advertising execution to brand protection &#8212; we run it all. You focus on your product and supply chain. We handle everything else.</p>
+      <div class="pcard-includes">
+        <span class="pcard-includes-label">What&#39;s included</span>
+        <ul class="pcard-list">
+          <li>End-to-end marketplace operations across all active channels</li>
+          <li>Listing creation, SEO, A+ content &amp; brand storefront builds</li>
+          <li>Full advertising management &#8212; Sponsored &amp; DSP campaigns</li>
+          <li>Review management, Q&amp;A responses &amp; brand health monitoring</li>
+          <li>Competitor tracking &amp; market intelligence reporting</li>
+          <li>Weekly performance calls directly with founders</li>
+        </ul>
+      </div>
+      <a href="mailto:hello@sunnybrandpartners.com" class="pcard-cta">Start a Conversation <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section id="pcta">
+  <div class="pcta-stripe"></div>
+  <div class="pcta-in">
+    <div class="pcta-badge rv"><div class="pulse"></div>Now Accepting New Partners</div>
+    <h2 class="pcta-h rv d1">Not sure which<br>model fits <em>you?</em></h2>
+    <p class="pcta-sub rv d2">Let&#39;s talk. We&#39;ll figure out together which partnership structure creates the most value for your brand right now.</p>
+    <div class="pcta-btns rv d3">
+      <a href="mailto:hello@sunnybrandpartners.com" class="btn-gd">Partner With Us <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="mailto:hello@sunnybrandpartners.com" class="btn-gh">Contact Us Directly</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="frule"></div>
+  <div class="fbot">
+    <span class="fcopy">&#169; 2026 Sunny Brand Partners. All rights reserved.</span>
+    <a href="sunny-brand-partners.html" class="fback"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to Home</a>
+  </div>
+</footer>
+
+<script>
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.08;ry+=(my-ry)*.08;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+scrollY-68,behavior:'smooth'})}}));
+</script>
+</body>
+</html>
